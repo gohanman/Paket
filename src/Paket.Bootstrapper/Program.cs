@@ -129,7 +129,7 @@ namespace Paket.Bootstrapper
 
         public static IDownloadStrategy GetEffectiveDownloadStrategy(DownloadArguments dlArgs, bool preferNuget, bool forceNuget)
         {
-            var gitHubDownloadStrategy = new GitHubDownloadStrategy(new WebRequestProxy(), new FileProxy()).AsCached(dlArgs.IgnoreCache);
+            var gitHubDownloadStrategy = new GitHubDownloadStrategy(new WebRequestProxy(dlArgs.IgnoreSSL), new FileProxy()).AsCached(dlArgs.IgnoreCache);
             var nugetDownloadStrategy = new NugetDownloadStrategy(new WebRequestProxy(), new DirectoryProxy(), new FileProxy(), dlArgs.Folder, dlArgs.NugetSource).AsCached(dlArgs.IgnoreCache);
 
             IDownloadStrategy effectiveStrategy;

@@ -21,6 +21,7 @@ namespace Paket.Bootstrapper
             public const string Silent = "-s";
             public const string IgnoreCache = "-f";
             public const string MaxFileAge = "--max-file-age=";
+            public const string IgnoreSSL = "--no-ssl";
         }
         public static class AppSettingKeys
         {
@@ -78,6 +79,7 @@ namespace Paket.Bootstrapper
             var ignoreCache = false;
             var commandArgs = args.ToList();
             int? maxFileAgeInMinutes = null;
+            bool ignoreSSL = false;
 
             if (commandArgs.Contains(CommandArgs.SelfUpdate))
             {
@@ -111,6 +113,12 @@ namespace Paket.Bootstrapper
                 commandArgs.Remove(maxFileAgeArg);
             }
 
+            if (commandArgs.Contains(CommandArgs.IgnoreSSL))
+            {
+                commandArgs.Remove(CommandArgs.IgnoreSSL);
+                ignoreSSL = true;
+            }
+
             if (commandArgs.Count >= 1)
             {
                 if (commandArgs[0] == CommandArgs.Prerelease)
@@ -134,6 +142,7 @@ namespace Paket.Bootstrapper
             downloadArguments.Target = target;
             downloadArguments.Folder = folder;
             downloadArguments.MaxFileAgeInMinutes = maxFileAgeInMinutes;
+            downloadArguments.IgnoreSSL = ignoreSSL;
             return commandArgs;
         }
 

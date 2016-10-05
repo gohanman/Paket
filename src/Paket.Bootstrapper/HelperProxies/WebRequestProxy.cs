@@ -10,6 +10,14 @@ namespace Paket.Bootstrapper.HelperProxies
             Client = new WebClient();
         }
 
+        public WebRequestProxy(bool ignoreSSL)
+        {
+            Client = new WebClient();
+            if (ignoreSSL) {
+                ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, errors) => true;
+            }
+        }
+
         private WebClient Client { get; set; }
 
         public string DownloadString(string address)

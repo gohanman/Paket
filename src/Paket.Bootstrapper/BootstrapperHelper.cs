@@ -22,6 +22,7 @@ Options:
                                older than <IN MINUTES> all checks will be skipped.
 --self                         downloads and updates paket.bootstrapper
 -f                             don't use local cache; always downloads
+--no-ssl                       ignore SSL certificates when downloading paket.exe
 -s                             silent mode; no output";
         const string PaketBootstrapperUserAgent = "Paket.Bootstrapper";
 

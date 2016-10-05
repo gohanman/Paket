@@ -11,6 +11,7 @@ namespace Paket.Bootstrapper
         public string LatestVersion { get; set; }
         public bool IgnorePrerelease { get; set; }
         public bool IgnoreCache { get; set; }
+        public bool IgnoreSSL { get; set; }
         public int? MaxFileAgeInMinutes { get; set; }
 
         public DownloadArguments()
@@ -18,6 +19,7 @@ namespace Paket.Bootstrapper
             IgnorePrerelease = true;
             LatestVersion = String.Empty;
             MaxFileAgeInMinutes = null;
+            IgnoreSSL = false;
         }
 
         public DownloadArguments(string latestVersion, bool ignorePrerelease, string folder, string target, bool doSelfUpdate, string nugetSource, bool ignoreCache, int? maxFileAgeInMinutes)
